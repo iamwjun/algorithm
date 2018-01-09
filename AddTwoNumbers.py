@@ -4,23 +4,31 @@ class ListNode:
         self.val = x
         self.next = None
 
-one = ListNode(0)
-cur = one
-node = ListNode(add)
-
-
-
-
-
-
 class Solution:
-    def addTwoNumbers(self, l1, l2):
-        print(l1(0))
-        node = l2.head
-        while node:
-            print(node.value)
-            node = node.next
-        for node in l1:
-            print(node.value)
 
-Solution().addTwoNumbers(one, two)
+    def addTwoNumbers(self, l1, l2):
+        retype = ListNode(0)
+        current, fixed = retype, 0
+        while l1 or l2:
+            count, sum = 0, 0
+            if l1:
+                count += l1.val
+                l1 = l1.next
+            if l2:
+                count += l2.val
+                l2 = l2.next
+            sum = count + fixed
+            fixed = sum // 10
+            current.next = ListNode(sum % 10)
+            current = current.next
+        
+        if fixed > 0:
+            current.next = ListNode(fixed)
+
+        return retype.next
+
+if __name__ == '__main__':
+    a = ListNode(1)
+    b, b.next = ListNode(9), ListNode(9)
+    result = Solution().addTwoNumbers(a, b)
+    print("{0} -> {1}".format(result.val, result.next.val))
