@@ -37,44 +37,50 @@ from itertools import combinations, permutations
 
 # 方法2
 
+# class Solution(object):
+#     def lengthOfLongestSubstring(self, s):
+#         """
+#         :type s: str
+#         :rtype: int
+#         """
+#         longest = 0
+#         substring_map = {}
+#         start = 0
+#         for i in range(len(s)):
+#             print(i)
+#             position = substring_map.get(s[i])
+#             if position is not None and position >= start:                 
+#                 length = i - start
+#                 start = position + 1                
+#                 longest = max(length, longest)
+#             substring_map[s[i]] = i
+#             print(substring_map)
+
+#         longest = max(len(s) - start, longest)
+#         return longest
+
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
-        :rtype: int
+        :a
+        :c: int 最长长度
         """
         longest = 0
         substring_map = {}
         start = 0
         for i in range(len(s)):
-            print(i)
             position = substring_map.get(s[i])
-            if position is not None and position >= start:                 
+            if position is not None and position >= start:
                 length = i - start
-                start = position + 1                
+                start = position + 1
                 longest = max(length, longest)
             substring_map[s[i]] = i
+            print(i)
             print(substring_map)
 
-        longest = max(len(s) - start, longest)
+        longest = max(len(s) - start, longest)  
         return longest
-
-# class Solution(object):
-#     def lengthOfLongestSubstring(self, s):
-#         """
-#         :type s: str
-#         :a
-#         :c: int 最长长度
-#         """
-#         position = 0
-#         substring_map = {}
-#         start = 0
-#         for i in range(len(s)):
-#             position = substring_map.get(s[i])
-#             if position is not None and position >= start:
-#                 length = 
-        
-#         return longest
 
 if __name__ == '__main__':
     str = "xrstenkqqpj"
