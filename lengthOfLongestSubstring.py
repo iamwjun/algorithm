@@ -79,11 +79,11 @@ class Solution(object):
             print(i)
             print(substring_map)
 
-        longest = max(len(s) - start, longest)  
+        longest = max(len(s) - start, longest)
         return longest
 
 if __name__ == '__main__':
-    str = "xrstenkqqpj"
+    str = "awyuwqeaq"
     start_time = timeit.default_timer()
     print(Solution().lengthOfLongestSubstring(str))
     print(timeit.default_timer() - start_time)
