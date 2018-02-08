@@ -64,33 +64,98 @@ import timeit
 
 # 方法三  OK
 
-class Solution:
-    def longestPalindrome(self, s):
-        if len(s) == 0 or len(s) == 1:
-        	return s
-        maxLen = 1
-        start = 0
-        for i in range(len(s)):
-            print("i->{0} maxLen->{1} start->{2}".format(i, maxLen, start))
-            if i - maxLen >= 1 and s[i - maxLen - 1:i + 1] == s[i - maxLen - 1:i + 1][::-1]:
-                start = i - maxLen - 1
-                maxLen += 2
-                print('maxLen->{0} start->{1} return->{2}'.format(maxLen, start, s[start:start+maxLen]))
-                continue
+# class Solution:
+#     def longestPalindrome(self, s):
+#         if len(s) == 0 or len(s) == 1:
+#         	return s
+#         maxLen = 1
+#         start = 0
+#         for i in range(len(s)):
+#             # print("i->{0} maxLen->{1} start->{2}".format(i, maxLen, start))
+#             if i - maxLen >= 1 and s[i - maxLen - 1:i + 1] == s[i - maxLen - 1:i + 1][::-1]:
+#                 print('条件1 maxLen->{0} start->{1} return->{2} i->{3}'.format(maxLen, start, s[start:start+maxLen], i))            
+#                 start = i - maxLen - 1
+#                 maxLen += 2                
+#                 continue
 
-            if i - maxLen >= 0 and s[i - maxLen:i + 1] == s[i - maxLen:i + 1][::-1]:
-                start = i - maxLen
-                maxLen += 1
-                print('maxLen->{0} start->{1} return->{2}'.format(maxLen, start, s[start:start+maxLen]))
-                # print('maxLen->{0}'.format(maxLen))
+#             if i - maxLen >= 0 and s[i - maxLen:i + 1] == s[i - maxLen:i + 1][::-1]:
+#                 print('条件2 maxLen->{0} start->{1} return->{2} i->{3}'.format(maxLen, start, s[start:start+maxLen], i))
+#                 start = i - maxLen
+#                 maxLen += 1
+#                 # print('maxLen->{0}'.format(maxLen))
 
-        return s[start:start+maxLen]
+#         return s[start:start+maxLen]
                 
 
+# class Solution:
+#     def longestPalindrome(self, s):
+#         """
+#         :type s: str eqgjjgqf
+#         :rtype: str
+#         """
+#         # substring_map = {}
+#         start = 0
+#         maxLen = 1
+
+#         for i in range(len(s)):
+#             # posithon = substring_map.get(s[i])
+#             # if posithon is not None:
+#             #     if s[posithon:i] == s[posithon:i][::-1] and maxLen == 1:
+#             #         maxLen += len(s[posithon:i])
+#             #         start = posithon
+#                     # print("条件1 start->{0} maxLen->{1} posithon->{2}".format(start, maxLen, posithon))
+
+#             if i - maxLen >= 1 and s[i-maxLen-1:i+1] == s[i-maxLen-1:i+1][::-1]:
+#                 start = i-maxLen-1
+#                 maxLen += 2
+#                     # print("条件2 start->{0} maxLen->{1}".format(start, maxLen))
+#                 continue
+                
+#             if i - maxLen >= 0 and s[i-maxLen:i+1] == s[i-maxLen:i+1][::-1]:
+#                 start = i-maxLen
+#                 maxLen += 1
+#                     # print("条件3 start->{0} maxLen->{1}".format(start, maxLen))
+
+#             # substring_map[s[i]] = i
+#         # print(substring_map, maxLen)
+#         # print("substring_map->{0} start->{1} maxLen->{2}".format(substring_map, start, maxLen))
+        
+#         return s[start:start+maxLen]
+
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        start = 0
+        maxLen = 1
+        for i in range(len(s)):
+            if i - maxLen >= 1 and s[i - maxLen - 1:i + 1] == s[i - maxLen - 1:i + 1][::-1]:
+                print('条件1 maxLen->{0} start->{1} return->{2} i->{3}'.format(maxLen, start, s[start:start+maxLen], i)) 
+                start = i - maxLen - 1
+                maxLen += 2
+                continue
+            
+            if i - maxLen >= 0 and s[i - maxLen: i + 1] == s[i - maxLen:i + 1][::-1]:
+                print('条件2 maxLen->{0} start->{1} return->{2} i->{3}'.format(maxLen, start, s[start:start+maxLen], i)) 
+                start = i - maxLen
+                maxLen += 1
+
+        return s[start:start + maxLen]
+
 if __name__ == '__main__':
-    # str = "aa"
+    # str = "aaa"
+    str = "babaddtattarrattatddetartrateedredividerb"
     # str = "anana"
-    str = "rgczcpratwyqxaszbuwwcadruayhasynuxnakpmsyhxzlnxmdtsqqlmwnbxvmgvllafrpmlfuqpbhjddmhmbcgmlyeypkfpreddyencsdmgxysctpubvgeedhurvizgqxclhpfrvxggrowaynrtuwvvvwnqlowdihtrdzjffrgoeqivnprdnpvfjuhycpfydjcpfcnkpyujljiesmuxhtizzvwhvpqylvcirwqsmpptyhcqybstsfgjadicwzycswwmpluvzqdvnhkcofptqrzgjqtbvbdxylrylinspncrkxclykccbwridpqckstxdjawvziucrswpsfmisqiozworibeycuarcidbljslwbalcemgymnsxfziattdylrulwrybzztoxhevsdnvvljfzzrgcmagshucoalfiuapgzpqgjjgqsmcvtdsvehewrvtkeqwgmatqdpwlayjcxcavjmgpdyklrjcqvxjqbjucfubgmgpkfdxznkhcejscymuildfnuxwmuklntnyycdcscioimenaeohgpbcpogyifcsatfxeslstkjclauqmywacizyapxlgtcchlxkvygzeucwalhvhbwkvbceqajstxzzppcxoanhyfkgwaelsfdeeviqogjpresnoacegfeejyychabkhszcokdxpaqrprwfdahjqkfptwpeykgumyemgkccynxuvbdpjlrbgqtcqulxodurugofuwzudnhgxdrbbxtrvdnlodyhsifvyspejenpdckevzqrexplpcqtwtxlimfrsjumiygqeemhihcxyngsemcolrnlyhqlbqbcestadoxtrdvcgucntjnfavylip"
+    # str = "aba"
+    # str = "babadada"
+    # str = "babadada"
+    # str = "rgczcpratwwyqxaszbuwcadruayhasynuxnakpmsyhxzlnxmdtsqqlmwnbxvmgvllafrpmlfuqpbhjddmhmbcgmlyeypkfpreddyencsdmgxysctpubvgeedhurvizgqxclhpfrvxggrowaynrtuwvvvwnqlowdihtrdzjffrgoeqivnprdnpvfjuhycpfydjcpfcnkpyujljiesmuxhtizzvwhvpqylvcirwqsmpptyhcqybstsfgjadicwzycswwmpluvzqdvnhkcofptqrzgjqtbvbdxylrylinspncrkxclykccbwridpqckstxdjawvziucrswpsfmisqiozworibeycuarcidbljslwbalcemgymnsxfziattdylrulwrybzztoxhevsdnvvljfzzrgcmagshucoalfiuapgzpqgjjgqsmcvtdsvehewrvtkeqwgmatqdpwlayjcxcavjmgpdyklrjcqvxjqbjucfubgmgpkfdxznkhcejscymuildfnuxwmuklntnyycdcscioimenaeohgpbcpogyifcsatfxeslstkjclauqmywacizyapxlgtcchlxkvygzeucwalhvhbwkvbceqajstxzzppcxoanhyfkgwaelsfdeeviqogjpresnoacegfeejyychabkhszcokdxpaqrprwfdahjqkfptwpeykgumyemgkccynxuvbdpjlrbgqtcqulxodurugofuwzudnhgxdrbbxtrvdnlodyhsifvyspejenpdckevzqrexplpcqtwtxlimfrsjumiygqeemhihcxyngsemcolrnlyhqlbqbcestadoxtrdvcgucntjnfavylip"
     start_time = timeit.default_timer()
     print(Solution().longestPalindrome(str))
     print(timeit.default_timer() - start_time)
+    # for i in range(1, 100):
+    #     b = i*480 + 1
+    #     if b%83 == 0:
+    #         print(i)
